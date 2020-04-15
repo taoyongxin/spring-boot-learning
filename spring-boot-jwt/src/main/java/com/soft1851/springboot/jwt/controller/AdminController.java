@@ -38,7 +38,7 @@ public class AdminController {
         String userId = UUID.randomUUID().toString();
         String role = "admin";
         // 用userId和role来生成token，并指定过期时间
-        Date expiresAt = new Date(System.currentTimeMillis() + 600L * 1000L);
+        Date expiresAt = new Date(System.currentTimeMillis() + 10L * 1000L);
         String token = JwtTokenUtil.getToken(userId, role, expiresAt);
         log.info("### 登录成功, token={} ###", token);
         //获取HttpServletResponse对象
@@ -59,8 +59,8 @@ public class AdminController {
         assert sra != null;
         HttpServletRequest request = sra.getRequest();
         String token = request.getHeader("Authorization");
-//        String userRole = JwtTokenUtil.getUserRole(token);
-        String userRole = null;
+        String userRole = JwtTokenUtil.getUserRole(token);
+//        String userRole = null;
         List<String> permissionsByRole = adminService.getPermissionsByRole(userRole);
         return ResponseResult.success(permissionsByRole);
     }

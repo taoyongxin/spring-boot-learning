@@ -9,7 +9,7 @@ public class Test {
     public static void main(String[] args) {
         //生成token
         Encrypt encrypt = new Encrypt();
-        String token = encrypt.getToken(false, "yjy", "yjy","man");
+        String token = encrypt.getToken(false, "tyx", "tyx","man");
 //        System.out.println(token);
         //解密token
         Decrypt decrypt = new Decrypt();

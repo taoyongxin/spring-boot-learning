@@ -50,14 +50,17 @@ public class JwtInterceptor implements HandlerInterceptor {
                 //通过自定义异常抛出权限不足的信息，由全局统一处理
                 throw new JwtException("用户权限不足",ResultCode.PERMISSION_NO_ACCESS);
             } else {
-              if(JwtTokenUtil.isExpiration(token)){
-                  log.info("### token已失效 ###");
-                  //通过自定义异常抛出token失效的信息，由全局统一处理
-                  throw new JwtException("token已失效",ResultCode.USER_TOKEN_EXPIRES);
-              } else {
-                  //之前的拦截全部通过，放行到controller层调用接口
-                  return true;
-              }
+//                第二种解决方案，token失效问题
+                return true;
+//                第一种结局方案，token失效问题
+//              if(JwtTokenUtil.isExpiration(token)){
+//                  log.info("### token已失效 ###");
+//                  //抛出InvalidClaimException,由全局统一处理
+//                  throw new InvalidClaimException("Token已失效");
+//              } else {
+//                  //之前的拦截全部通过，放行到controller层调用接口
+//                  return true;
+//              }
             }
         }
     }
