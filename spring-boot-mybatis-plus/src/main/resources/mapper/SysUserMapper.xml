@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soft1851.springboot.mbp.mapper.SysUserMapper">
+
+    <select id="getAll" resultType="com.soft1851.springboot.mbp.entity.SysUser">
+        SELECT *
+        FROM db_tyx.sys_user
+        order by user_id
+    </select>
+
+    <select id="getSysUserById" resultType="com.soft1851.springboot.mbp.entity.UserRoleVo">
+        SELECT t1.*,t2.*
+        FROM db_tyx.user_role t3
+        LEFT JOIN db_tyx.sys_user t1
+        ON t1.user_id = t3.user_id
+        LEFT JOIN db_tyx.sys_role t2
+        ON t2.role_id = t3.role_id
+        WHERE t3.user_id = #{userId}
+    </select>
+
+</mapper>

@@ -26,6 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry){
         //拦截路径可自行配置多个可用，分隔开
+        //excludePathPatterns忽略    addPathPatterns是拦截的那些目录
         registry.addInterceptor(jwtInterceptor).addPathPatterns("/**").excludePathPatterns("/login").excludePathPatterns("/static/**");
     }
 }

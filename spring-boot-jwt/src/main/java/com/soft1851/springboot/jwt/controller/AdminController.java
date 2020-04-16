@@ -41,9 +41,11 @@ public class AdminController {
         Date expiresAt = new Date(System.currentTimeMillis() + 10L * 1000L);
         String token = JwtTokenUtil.getToken(userId, role, expiresAt);
         log.info("### 登录成功, token={} ###", token);
-        //获取HttpServletResponse对象
+        //获取HttpServletResponse对象：表服务器的响应。这个对象中封装了向客户端发送数据、
+        // 发送响应头，发送响应状态码的方法。查看HttpServletResponse的API，可以看到这些相关的方法。
         ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         assert sra != null;
+        //获取response
         HttpServletResponse response = sra.getResponse();
         assert response != null;
         // 将token放在响应头返回，此处需在跨域配置中配置allowedHeaders和allowedExposedHeaders
